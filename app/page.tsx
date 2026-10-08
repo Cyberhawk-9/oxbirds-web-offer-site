@@ -5,6 +5,7 @@ import { SamplesSection } from "@/components/landing/samples-section"
 import { PricingSection } from "@/components/landing/pricing-section"
 import { FaqSection } from "@/components/landing/faq-section"
 import { LeadFormSection } from "@/components/landing/lead-form-section"
+import { LegalSections } from "@/components/landing/legal-sections"
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <PricingSection />
       <FaqSection />
       <LeadFormSection />
+      <LegalSections />
     </>
   )
 }

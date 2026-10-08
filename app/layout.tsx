@@ -1,13 +1,13 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter, Sora } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { MobileCtaBar } from "@/components/mobile-cta-bar"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { TrackingScripts } from "@/components/tracking-scripts"
+import { AttributionCapture } from "@/components/attribution-capture"
 import { partner, themeCssVariables } from "@/lib/partner"
 import { ROBOTS_METADATA } from "@/lib/indexing"
 
@@ -83,7 +83,7 @@ export default function RootLayout({
         </div>
         <MobileCtaBar />
         <ScrollToTopButton />
-        <Analytics />
+        <AttributionCapture />
       </body>
     </html>
   )

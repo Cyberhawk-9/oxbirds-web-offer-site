@@ -1,33 +1,21 @@
-# cyberhawk-official-site
+# Website offer landing page
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+A one-page Next.js landing page. All names, colors, prices, contact details, copy, and tracking IDs come from `config/partner.config.json` (loaded by `lib/partner.ts`). Values starting with `REPLACE` are treated as empty and hidden.
 
-## Built with v0
+## Environment variables
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | EmailJS service used by the request form |
+| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | EmailJS template used by the request form |
+| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | EmailJS public key |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | Set to `true` to allow search engines. Any other value sends `noindex`. |
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_OvGe7TYT1TYBL7nc3bfL3goZFY2D)
+If any EmailJS variable is missing, the form is disabled and shows a notice.
 
-## Getting Started
-
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.

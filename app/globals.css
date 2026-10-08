@@ -300,3 +300,10 @@ main section h2:is(.text-2xl, .text-3xl, .text-4xl, .text-5xl) {
     opacity: 0 !important;
   }
 }
+
+/* Keeps keyboard-focused form fields above the mobile sticky bar. */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-bottom: 6rem;
+  }
+}
