@@ -42,7 +42,7 @@ export function SiteFooter() {
 
           {(legal.businessName || legal.address) && (
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <h2 className="text-sm font-semibold text-foreground">Business</h2>
+              <h2 className="text-sm font-semibold text-foreground">Company</h2>
               {legal.businessName && <p>{legal.businessName}</p>}
               {legal.address && <address className="not-italic">{legal.address}</address>}
             </div>

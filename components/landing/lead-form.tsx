@@ -304,9 +304,8 @@ export function LeadForm() {
           </div>
         </div>
 
-        <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-          <label htmlFor="company_website">Leave this field empty</label>
-          <input id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+        <div aria-hidden="true" className="pointer-events-none absolute -left-[9999px] top-auto h-px w-px overflow-hidden opacity-0">
+          <input name="company_website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
         </div>
 
         <div className="flex flex-col gap-3">

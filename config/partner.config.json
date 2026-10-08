@@ -5,7 +5,6 @@
     "logo": "/partner/logo.png",
     "logoAlt": "oxbird",
     "favicon": "/partner/favicon.ico",
-    "ogImage": "/partner/og-image.png",
     "websiteUrl": "https://oxbird.com",
     "siteUrl": "https://websites.oxbird.com"
   },
@@ -33,12 +32,12 @@
   },
   "legal": {
     "businessName": "Oxbird LLC",
-    "address": "REPLACE",
+    "address": "136 Grove Ave, Prescott, AZ 86301",
     "privacyEmail": "REPLACE"
   },
   "offer": {
     "setupPrice": 249,
-    "monthlyPrice": 59,
+    "monthlyPrice": 49,
     "headline": "A professional website for your business, built for you.",
     "subhead": "Get a custom website that looks sharp on every phone, with hosting and updates included. No long contract.",
     "ctaLabel": "Request a call",

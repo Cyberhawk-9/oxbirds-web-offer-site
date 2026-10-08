@@ -17,10 +17,9 @@ export function HeroSection() {
         <div className="animate-fade-in-up delay-200 flex flex-col items-center gap-4">
           <CtaButton size="lg" showArrow className="px-8 text-base" />
           <p className="text-sm text-muted-foreground">
-            {"Starting at "}
             <span className="font-semibold text-foreground">{setupPrice}</span>
             {" to get started, then "}
-            <span className="font-semibold text-foreground">{monthlyPrice}/month</span>
+            <span className="font-semibold text-foreground">{monthlyPrice} a month</span>
           </p>
         </div>
         <ul className="animate-fade-in-up delay-300 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">

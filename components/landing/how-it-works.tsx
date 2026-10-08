@@ -25,10 +25,7 @@ export function HowItWorks() {
               >
                 {index + 1}
               </span>
-              <h3 className="text-lg text-foreground">
-                <span className="sr-only">{`Step ${index + 1}: `}</span>
-                {step.title}
-              </h3>
+              <h3 className="text-lg text-foreground">{step.title}</h3>
               <p className="leading-relaxed text-muted-foreground">{step.body}</p>
             </Reveal>
           ))}

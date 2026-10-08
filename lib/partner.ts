@@ -14,7 +14,6 @@ export interface PartnerConfig {
     logo: string
     logoAlt: string
     favicon: string
-    ogImage: string
     websiteUrl: string
     siteUrl: string
   }

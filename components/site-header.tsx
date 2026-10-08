@@ -28,7 +28,7 @@ export function SiteHeader() {
               {partner.contact.phoneDisplay}
             </a>
           )}
-          <CtaButton size="sm" className="hidden md:inline-flex" />
+          <CtaButton size="sm" />
         </div>
       </div>
     </header>

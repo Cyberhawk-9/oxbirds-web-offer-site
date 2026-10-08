@@ -102,6 +102,10 @@ function TermsContent() {
       </Block>
       <Block title="Contact">
         <p>
+          {ownerName}
+          {legal.address ? `, ${legal.address}` : ""}.
+        </p>
+        <p>
           Questions about these terms? Reach us at <ContactLine />
           {hasPhone && privacyEmail && (
             <>
