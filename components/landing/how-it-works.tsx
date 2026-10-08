@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/landing/section-heading"
 import { partner } from "@/lib/partner"
 
 const steps = [
-  { title: "Tell us about your business", body: "Request a call. We'll answer your questions." },
+  { title: "Tell us about your business", body: "Send us a request. We'll answer your questions." },
   {
     title: "We build your site",
     body: `You share a few details. Your first version is ${partner.promises.firstVersion}.`,

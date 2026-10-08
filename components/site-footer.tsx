@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { hasPhone, partner, phoneHref } from "@/lib/partner"
+import { partner } from "@/lib/partner"
 
 export function SiteFooter() {
   const { brand, contact, legal } = partner
@@ -23,14 +23,9 @@ export function SiteFooter() {
             <p className="font-display text-lg font-semibold text-foreground">{brand.name}</p>
           </div>
 
-          {(hasPhone || contact.email || contact.hours) && (
+          {(contact.email || contact.hours) && (
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
               <h2 className="text-sm font-semibold text-foreground">Contact</h2>
-              {hasPhone && (
-                <a href={phoneHref} className="hover:text-primary transition-colors">
-                  {contact.phoneDisplay}
-                </a>
-              )}
               {contact.email && (
                 <a href={`mailto:${contact.email}`} className="hover:text-primary transition-colors">
                   {contact.email}

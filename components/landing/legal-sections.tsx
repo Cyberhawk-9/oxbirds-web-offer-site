@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { ChevronDown } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { hasPhone, partner, phoneHref } from "@/lib/partner"
+import { partner } from "@/lib/partner"
 
 const LAST_UPDATED = "October 8, 2026"
 
@@ -22,13 +22,6 @@ function ContactLine() {
     return (
       <a href={`mailto:${privacyEmail}`} className="text-primary underline-offset-4 hover:underline">
         {privacyEmail}
-      </a>
-    )
-  }
-  if (hasPhone) {
-    return (
-      <a href={phoneHref} className="text-primary underline-offset-4 hover:underline">
-        {contact.phoneDisplay}
       </a>
     )
   }
@@ -106,16 +99,7 @@ function TermsContent() {
           {legal.address ? `, ${legal.address}` : ""}.
         </p>
         <p>
-          Questions about these terms? Reach us at <ContactLine />
-          {hasPhone && privacyEmail && (
-            <>
-              {" or "}
-              <a href={phoneHref} className="text-primary underline-offset-4 hover:underline">
-                {contact.phoneDisplay}
-              </a>
-            </>
-          )}
-          .
+          Questions about these terms? Reach us at <ContactLine />.
         </p>
       </Block>
       <p className="text-sm text-muted-foreground">Last updated: {LAST_UPDATED}</p>

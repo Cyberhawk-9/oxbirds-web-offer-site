@@ -24,8 +24,6 @@
     }
   },
   "contact": {
-    "phoneDisplay": "REPLACE",
-    "phoneLink": "REPLACE",
     "email": "REPLACE",
     "hours": "REPLACE",
     "responseTime": "one business day"
@@ -40,7 +38,7 @@
     "monthlyPrice": 49,
     "headline": "A professional website for your business, built for you.",
     "subhead": "Get a custom website that looks sharp on every phone, with hosting and updates included. No long contract.",
-    "ctaLabel": "Request a call",
+    "ctaLabel": "Send a request",
     "priceNote": "No long-term contract. Cancel any month."
   },
   "promises": {
@@ -50,7 +48,7 @@
   },
   "samples": [],
   "leadForm": {
-    "consentText": "By submitting, you agree that {partnerName} may contact you by phone, text, or email about this offer. Message and data rates may apply. You can opt out at any time.",
+    "consentText": "By submitting, you agree that {partnerName} may contact you by text or email about this offer. Message and data rates may apply. You can opt out at any time.",
     "successTitle": "Thanks, we've got your request.",
     "successBody": "{partnerName} will contact you within {responseTime}."
   },
