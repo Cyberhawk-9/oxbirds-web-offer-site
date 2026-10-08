@@ -7,11 +7,11 @@ export function SiteFooter() {
   const ownerName = legal.businessName || brand.name
 
   return (
-    <footer className="border-t border-border bg-muted">
+    <footer className="section-tint border-t border-border">
       <div className="container max-w-7xl mx-auto flex flex-col gap-10 px-4 py-12 md:px-6 md:py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="flex flex-col gap-4">
-            <a href="#top" className="inline-flex items-center">
+            <a href="#top" className="logo-plate inline-flex items-center self-start">
               <Image
                 src={brand.logo || "/placeholder.svg"}
                 alt={brand.logoAlt || brand.name}
@@ -37,10 +37,10 @@ export function SiteFooter() {
             &copy; {year} {ownerName}. All rights reserved.
           </p>
           <nav aria-label="Legal" className="flex items-center gap-6 text-xs text-muted-foreground">
-            <a href="#privacy" className="hover:text-primary transition-colors">
+            <a href="#privacy" className="hover:text-glow transition-colors">
               Privacy
             </a>
-            <a href="#terms" className="hover:text-primary transition-colors">
+            <a href="#terms" className="hover:text-glow transition-colors">
               Terms
             </a>
           </nav>

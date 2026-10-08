@@ -21,6 +21,8 @@ export interface PartnerConfig {
     mode: "dark" | "light"
     primary: string
     primaryText: string
+    /** Bright green used for glows, highlights, and text on dark backgrounds. */
+    accent: string
     background: string
     surface: string
     text: string
@@ -118,6 +120,7 @@ export function themeCssVariables(): Record<string, string> {
   return {
     "--brand": theme.primary,
     "--brand-foreground": theme.primaryText,
+    "--glow": theme.accent,
     "--bg": theme.background,
     "--surface": theme.surface,
     "--text": theme.text,

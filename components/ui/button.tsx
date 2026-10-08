@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "border border-border bg-background text-foreground shadow-xs hover:border-brand-line hover:bg-brand-tint active:scale-[0.98]",
         solid:
-          "border border-primary bg-primary text-primary-foreground font-semibold shadow-xs hover:bg-primary/90 active:scale-[0.98]",
+          "btn-glow text-primary-foreground font-semibold active:scale-[0.98]",
         outline:
           "border border-border bg-background text-foreground shadow-xs hover:border-brand-line hover:bg-brand-tint active:scale-[0.98]",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:scale-[0.98]",

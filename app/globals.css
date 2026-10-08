@@ -11,26 +11,32 @@
 :root {
   --brand: #1f7a3e;
   --brand-foreground: #ffffff;
-  --bg: #ffffff;
-  --surface: #f3f8f4;
-  --text: #0f1a14;
-  --text-muted: #4f5a53;
-  --line: #d6e4da;
+  --glow: #3fd07a;
+  --bg: #060c09;
+  --surface: #0c1710;
+  --text: #e9f3ec;
+  --text-muted: #9bb0a2;
+  --line: #1c3023;
   --radius: 12px;
 
   /* Derived from the theme so every shade follows theme.* */
-  --brand-tint: color-mix(in srgb, var(--brand) 7%, var(--bg));
-  --brand-soft: color-mix(in srgb, var(--brand) 10%, var(--bg));
-  --brand-line: color-mix(in srgb, var(--brand) 35%, var(--bg));
+  --brand-tint: color-mix(in srgb, var(--brand) 14%, var(--bg));
+  --brand-soft: color-mix(in srgb, var(--brand) 22%, var(--bg));
+  --brand-line: color-mix(in srgb, var(--glow) 40%, var(--bg));
+  --glow-soft: color-mix(in srgb, var(--glow) 18%, transparent);
+  --glow-strong: color-mix(in srgb, var(--glow) 55%, transparent);
   --radius-card-size: calc(var(--radius) + 8px);
-  --shadow-subtle: 0 1px 2px color-mix(in srgb, var(--text) 6%, transparent);
-  --shadow-raised: 0 6px 20px -8px color-mix(in srgb, var(--text) 18%, transparent);
+  --shadow-subtle: 0 1px 2px color-mix(in srgb, #000 40%, transparent);
+  --shadow-raised:
+    0 0 0 1px color-mix(in srgb, var(--glow) 35%, transparent),
+    0 12px 40px -12px color-mix(in srgb, var(--glow) 45%, transparent),
+    0 0 60px -20px color-mix(in srgb, var(--glow) 40%, transparent);
 
   --background: var(--bg);
   --foreground: var(--text);
-  --card: var(--bg);
+  --card: var(--surface);
   --card-foreground: var(--text);
-  --popover: var(--bg);
+  --popover: var(--surface);
   --popover-foreground: var(--text);
   --primary: var(--brand);
   --primary-foreground: var(--brand-foreground);
@@ -41,12 +47,12 @@
   --accent: var(--surface);
   --accent-foreground: var(--text);
   /* Status color for errors; not a brand color, chosen to pass AA on white and on the tint. */
-  --destructive: #b42318;
-  --destructive-foreground: #ffffff;
+  --destructive: #f87171;
+  --destructive-foreground: #1a0606;
   --border: var(--line);
-  /* Form-field outlines are darker than card borders so inputs meet the 3:1 non-text contrast rule. */
-  --input: color-mix(in srgb, var(--text-muted) 75%, var(--bg));
-  --ring: var(--brand);
+  /* Form-field outlines are lighter than card borders so inputs meet the 3:1 non-text contrast rule. */
+  --input: color-mix(in srgb, var(--text-muted) 55%, var(--bg));
+  --ring: var(--glow);
 
   --sidebar: var(--surface);
   --sidebar-foreground: var(--text);
@@ -80,6 +86,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-glow: var(--glow);
   --color-brand-tint: var(--brand-tint);
   --color-brand-soft: var(--brand-soft);
   --color-brand-line: var(--brand-line);
@@ -140,28 +147,65 @@
     transform: translateX(3px);
   }
 
-  /* Shared flat card: white, thin border, minimal shadow. */
+  /*
+    Shared dark card: a faint top light, thin border, and a pointer-following spotlight on hover.
+    --mx / --my are set by <PointerGlow>; they fall back to the top center when the pointer is not over the card.
+  */
   .card-surface {
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--text) 5%, transparent), transparent 55%);
     background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-card-size);
     box-shadow: var(--shadow-subtle);
     position: relative;
     overflow: hidden;
+    isolation: isolate;
     transition:
-      border-color 200ms ease-out,
-      box-shadow 200ms ease-out;
+      border-color 250ms ease-out,
+      box-shadow 300ms ease-out;
+  }
+  .card-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      320px circle at var(--mx, 50%) var(--my, 0%),
+      color-mix(in srgb, var(--glow) 20%, transparent),
+      transparent 70%
+    );
+    transition: opacity 300ms ease-out;
   }
   .card-surface:is(li, article):hover,
   .card-surface:is(li, article):focus-within {
     border-color: var(--brand-line);
     box-shadow: var(--shadow-raised);
   }
+  .card-surface:is(li, article):hover::before,
+  .card-surface:is(li, article):focus-within::before {
+    opacity: 1;
+  }
 
-  /* Featured card, echoing the tinted first pricing card on the brand site. */
+  /* Featured card: gradient border and a constant soft glow. */
   .card-featured {
-    background-color: var(--brand-tint);
-    border-color: var(--brand-line);
+    background-image:
+      linear-gradient(180deg, color-mix(in srgb, var(--brand) 26%, var(--surface)), var(--surface) 70%),
+      linear-gradient(135deg, var(--glow), var(--brand) 55%, color-mix(in srgb, var(--glow) 20%, transparent));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-color: transparent;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--glow) 12%, transparent),
+      0 20px 60px -24px color-mix(in srgb, var(--glow) 55%, transparent);
+  }
+  .card-featured:is(li, article):hover,
+  .card-featured:is(li, article):focus-within {
+    border-color: transparent;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--glow) 30%, transparent),
+      0 24px 70px -20px var(--glow-strong);
   }
 
   .icon-tile {
@@ -171,21 +215,184 @@
     width: 44px;
     height: 44px;
     border-radius: var(--radius);
-    background-color: var(--brand-soft);
-    color: var(--brand);
+    background-image: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--glow) 28%, var(--bg)),
+      color-mix(in srgb, var(--brand) 40%, var(--bg))
+    );
+    border: 1px solid color-mix(in srgb, var(--glow) 35%, transparent);
+    color: var(--glow);
+    transition:
+      box-shadow 300ms ease-out,
+      transform 300ms ease-out;
+  }
+  .card-surface:hover .icon-tile {
+    box-shadow: 0 0 24px -2px var(--glow-strong);
   }
 
-  /* Small uppercase label above titles, in the brand color. */
+  /* Numbered badge in "How it works". */
+  .step-badge {
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--brand-foreground);
+    background-image: linear-gradient(145deg, color-mix(in srgb, var(--brand) 70%, var(--glow)), var(--brand));
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--glow) 12%, transparent), 0 0 24px -4px var(--glow-strong);
+  }
+
+  /* Small uppercase label above titles. */
   .eyebrow {
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--brand);
+    color: var(--glow);
   }
 
+  /* Headline text that fades from the main text color into the glow green. */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--text) 15%,
+      color-mix(in srgb, var(--glow) 70%, var(--text)) 60%,
+      var(--glow)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Pill used for the hero price line and highlights. */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--glow) 28%, var(--line));
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--glow) 10%, transparent), transparent);
+    background-color: color-mix(in srgb, var(--surface) 80%, transparent);
+    transition:
+      border-color 250ms ease-out,
+      box-shadow 300ms ease-out;
+  }
+  .pill:hover {
+    border-color: var(--glow);
+    box-shadow: 0 0 24px -4px var(--glow-strong);
+  }
+
+  /* Solid call-to-action: gradient fill, glow, and a light sweep on hover. */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-image: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brand) 85%, #000),
+      var(--brand) 50%,
+      color-mix(in srgb, var(--brand) 85%, var(--glow))
+    );
+    border: 1px solid color-mix(in srgb, var(--glow) 45%, var(--brand));
+    box-shadow:
+      0 0 0 0 transparent,
+      0 8px 28px -10px color-mix(in srgb, var(--glow) 55%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--text) 22%, transparent);
+    transition:
+      box-shadow 300ms ease-out,
+      border-color 250ms ease-out,
+      filter 250ms ease-out,
+      transform 150ms ease-out;
+  }
+  .btn-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, color-mix(in srgb, var(--text) 30%, transparent) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 700ms ease-out;
+  }
+  .btn-glow:hover,
+  .btn-glow:focus-visible {
+    filter: brightness(1.08);
+    border-color: var(--glow);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--glow) 22%, transparent),
+      0 10px 40px -6px var(--glow-strong),
+      0 0 60px -10px var(--glow-strong),
+      inset 0 1px 0 color-mix(in srgb, var(--text) 30%, transparent);
+  }
+  .btn-glow:hover::before,
+  .btn-glow:focus-visible::before {
+    transform: translateX(120%);
+  }
+
+  /* Page sections: a faint green wash from the top edge and a glowing hairline. */
   .section-tint {
-    background-color: var(--surface);
+    position: relative;
+    background-image:
+      radial-gradient(60% 55% at 50% 0%, color-mix(in srgb, var(--brand) 20%, transparent), transparent 72%),
+      linear-gradient(180deg, var(--surface), var(--bg));
+    border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  }
+  .section-tint::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background-image: linear-gradient(90deg, transparent, var(--glow), transparent);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  /* Hero: aurora wash plus a faint masked grid. */
+  .hero-aurora {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-aurora::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 120%;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+      radial-gradient(45% 45% at 30% 20%, color-mix(in srgb, var(--brand) 55%, transparent), transparent 70%),
+      radial-gradient(40% 40% at 72% 12%, color-mix(in srgb, var(--glow) 30%, transparent), transparent 70%),
+      radial-gradient(50% 40% at 50% 60%, color-mix(in srgb, var(--brand) 25%, transparent), transparent 75%);
+  }
+  .hero-aurora::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--text) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--text) 7%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 25%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 25%, #000 20%, transparent 75%);
+  }
+
+  .logo-plate {
+    border-radius: var(--radius);
+    background-color: var(--text);
+    padding: 0.25rem 0.625rem;
+    box-shadow: 0 0 24px -6px var(--glow-strong);
+    transition: box-shadow 300ms ease-out;
+  }
+  .logo-plate:hover {
+    box-shadow: 0 0 32px -2px var(--glow-strong);
   }
 
   /* Scroll-triggered reveal used by the <Reveal> component. Only transform/opacity animate. */
@@ -266,7 +473,23 @@
   .reveal {
     transition:
       opacity 500ms ease-out,
-      transform 500ms ease-out;
+      transform 500ms ease-out,
+      border-color 250ms ease-out,
+      box-shadow 300ms ease-out;
+    transition-delay: var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), 0ms, 0ms;
+  }
+
+  .hero-aurora::before {
+    animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-2%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 3%, 0) scale(1.06);
   }
 }
 

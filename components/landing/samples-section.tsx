@@ -26,7 +26,7 @@ export function SamplesSection() {
               <div className="flex flex-col gap-2 p-6">
                 <h3 className="text-lg text-foreground">
                   {sample.url ? (
-                    <a href={sample.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+                    <a href={sample.url} target="_blank" rel="noopener noreferrer" className="hover:text-glow">
                       {sample.title}
                     </a>
                   ) : (

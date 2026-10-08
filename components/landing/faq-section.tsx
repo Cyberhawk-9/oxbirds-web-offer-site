@@ -54,7 +54,7 @@ export function FaqSection() {
           <Accordion type="single" collapsible className="card-surface px-6">
             {faqs.map((faq, index) => (
               <AccordionItem key={faq.question} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:no-underline hover:text-primary focus-visible:ring-ring data-[state=open]:text-primary">
+                <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:no-underline hover:text-glow focus-visible:ring-ring data-[state=open]:text-glow">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-base leading-relaxed text-muted-foreground">

@@ -36,7 +36,7 @@ export function PricingSection() {
               <ul className="flex flex-col gap-3">
                 {plan.bullets.map((bullet) => (
                   <li key={bullet} className="flex items-start gap-3 text-foreground">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-glow" aria-hidden="true" />
                     <span className="leading-relaxed">{bullet}</span>
                   </li>
                 ))}

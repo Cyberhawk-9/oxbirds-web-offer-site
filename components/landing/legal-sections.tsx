@@ -18,7 +18,7 @@ const hasTracking = usesGoogle || usesMeta
 
 function ContactLine() {
   return (
-    <a href="#lead-form" className="text-primary underline-offset-4 hover:underline">
+    <a href="#lead-form" className="text-glow underline-offset-4 hover:underline">
       the request form on this page
     </a>
   )
@@ -143,7 +143,7 @@ export function LegalSections() {
                 className="rounded-card border border-border bg-card shadow-xs"
               >
                 <h2 id={`${id}-heading`} className="text-lg">
-                  <CollapsibleTrigger className="group flex w-full items-center justify-between gap-4 rounded-card px-6 py-5 text-left font-semibold text-foreground outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-primary">
+                  <CollapsibleTrigger className="group flex w-full items-center justify-between gap-4 rounded-card px-6 py-5 text-left font-semibold text-foreground outline-none hover:text-glow focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-glow">
                     {title}
                     <ChevronDown className="h-5 w-5 shrink-0 transition-transform group-data-[state=open]:rotate-180" aria-hidden="true" />
                   </CollapsibleTrigger>

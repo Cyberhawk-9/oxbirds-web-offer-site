@@ -333,7 +333,7 @@ function TextField({ label, name, type = "text", required, autoComplete, inputMo
       <Label htmlFor={id}>
         {label}
         {required ? (
-          <span aria-hidden="true" className="text-primary">
+          <span aria-hidden="true" className="text-glow">
             *
           </span>
         ) : (
