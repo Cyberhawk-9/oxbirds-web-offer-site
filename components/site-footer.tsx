@@ -2,7 +2,7 @@ import Image from "next/image"
 import { partner } from "@/lib/partner"
 
 export function SiteFooter() {
-  const { brand, contact, legal } = partner
+  const { brand, legal } = partner
   const year = new Date().getFullYear()
   const ownerName = legal.businessName || brand.name
 
@@ -22,18 +22,6 @@ export function SiteFooter() {
             </a>
             <p className="font-display text-lg font-semibold text-foreground">{brand.name}</p>
           </div>
-
-          {(contact.email || contact.hours) && (
-            <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <h2 className="text-sm font-semibold text-foreground">Contact</h2>
-              {contact.email && (
-                <a href={`mailto:${contact.email}`} className="hover:text-primary transition-colors">
-                  {contact.email}
-                </a>
-              )}
-              {contact.hours && <p>{contact.hours}</p>}
-            </div>
-          )}
 
           {(legal.businessName || legal.address) && (
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
