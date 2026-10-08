@@ -9,14 +9,15 @@
     "siteUrl": "https://websites.oxbird.com"
   },
   "theme": {
-    "mode": "light",
+    "mode": "dark",
     "primary": "#1F7A3E",
     "primaryText": "#ffffff",
-    "background": "#ffffff",
-    "surface": "#F3F8F4",
-    "text": "#0F1A14",
-    "muted": "#4F5A53",
-    "border": "#D6E4DA",
+    "accent": "#3FD07A",
+    "background": "#060C09",
+    "surface": "#0C1710",
+    "text": "#E9F3EC",
+    "muted": "#9BB0A2",
+    "border": "#1C3023",
     "radius": 12,
     "fonts": {
       "heading": "Plus Jakarta Sans",
@@ -51,7 +52,10 @@
   },
   "tracking": {
     "ga4MeasurementId": "",
-    "googleAds": { "conversionId": "", "conversionLabel": "" },
+    "googleAds": {
+      "conversionId": "",
+      "conversionLabel": ""
+    },
     "metaPixelId": ""
   },
   "indexing": false

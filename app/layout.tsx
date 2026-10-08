@@ -7,6 +7,7 @@ import { MobileCtaBar } from "@/components/mobile-cta-bar"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { TrackingScripts } from "@/components/tracking-scripts"
 import { AttributionCapture } from "@/components/attribution-capture"
+import { PointerGlow } from "@/components/pointer-glow"
 import { brandName, partner, themeCssVariables } from "@/lib/partner"
 import { fontCssVariables, fontVariableClasses } from "@/lib/fonts"
 import { ROBOTS_METADATA } from "@/lib/indexing"
@@ -66,6 +67,7 @@ export default function RootLayout({
         <MobileCtaBar />
         <ScrollToTopButton />
         <AttributionCapture />
+        <PointerGlow />
       </body>
     </html>
   )
