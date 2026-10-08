@@ -26,6 +26,13 @@ export interface PartnerConfig {
     surface: string
     text: string
     muted: string
+    border: string
+    /** Corner radius of buttons and inputs, in pixels. Cards use radius + 8. */
+    radius: number
+    fonts: {
+      heading: string
+      body: string
+    }
   }
   contact: {
     phoneDisplay: string
@@ -101,10 +108,20 @@ export const phoneHref = partner.contact.phoneLink
 
 export const hasPhone = Boolean(partner.contact.phoneDisplay && phoneHref)
 
-/** Fills {partnerName} and {responseTime} tokens in lead-form copy. */
+/** The brand name as written mid-sentence (exactly as configured, e.g. "oxbird"). */
+export const brandName = partner.brand.name
+
+/** The brand name as written at the start of a sentence (e.g. "Oxbird"). */
+export const brandNameStart = brandName.charAt(0).toUpperCase() + brandName.slice(1)
+
+/**
+ * Fills {partnerName} and {responseTime} tokens in lead-form copy. {partnerName} is
+ * capitalized when it starts the text or follows a sentence-ending mark.
+ */
 export function fillTemplate(template: string): string {
   return template
-    .replaceAll("{partnerName}", partner.brand.name)
+    .replace(/(^|[.!?]\s+)\{partnerName\}/g, (_, lead: string) => `${lead}${brandNameStart}`)
+    .replaceAll("{partnerName}", brandName)
     .replaceAll("{responseTime}", partner.contact.responseTime)
 }
 
@@ -119,5 +136,7 @@ export function themeCssVariables(): Record<string, string> {
     "--surface": theme.surface,
     "--text": theme.text,
     "--text-muted": theme.muted,
+    "--line": theme.border,
+    "--radius": `${theme.radius}px`,
   }
 }

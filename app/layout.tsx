@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Sora } from "next/font/google"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -8,26 +7,17 @@ import { MobileCtaBar } from "@/components/mobile-cta-bar"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { TrackingScripts } from "@/components/tracking-scripts"
 import { AttributionCapture } from "@/components/attribution-capture"
-import { partner, themeCssVariables } from "@/lib/partner"
+import { brandName, brandNameStart, partner, themeCssVariables } from "@/lib/partner"
+import { fontCssVariables, fontVariableClasses } from "@/lib/fonts"
 import { ROBOTS_METADATA } from "@/lib/indexing"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-display",
-})
-
-const title = `${partner.offer.headline} | ${partner.brand.name}`
+const title = `${partner.offer.headline} | ${brandName}`
 const description = partner.offer.subhead
 const ogImage = {
   url: partner.brand.ogImage,
   width: 1200,
   height: 630,
-  alt: `${partner.brand.name}: ${partner.offer.headline}`,
+  alt: `${brandNameStart}: ${partner.offer.headline}`,
 }
 
 export const metadata: Metadata = {
@@ -67,14 +57,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${partner.theme.mode} scroll-smooth bg-background`}
-      style={themeCssVariables() as React.CSSProperties}
+      className={`${partner.theme.mode} ${fontVariableClasses} scroll-smooth bg-background`}
+      style={{ ...themeCssVariables(), ...fontCssVariables() } as React.CSSProperties}
     >
       <head>
         <TrackingScripts />
       </head>
       <body
-        className={`${inter.variable} ${sora.variable} font-sans antialiased bg-background text-foreground min-h-screen flex flex-col pb-20 md:pb-0`}
+        className={`font-sans antialiased bg-background text-foreground min-h-screen flex flex-col pb-20 md:pb-0`}
       >
         <div className="flex-1 flex flex-col w-full relative">
           <SiteHeader />

@@ -24,9 +24,13 @@ export function PricingSection() {
         <SectionHeading id="pricing-heading" title="Simple pricing" />
         <div className="grid gap-6 md:grid-cols-2">
           {plans.map((plan, index) => (
-            <Reveal key={plan.title} index={index} className="card-surface flex flex-col gap-6 p-8">
+            <Reveal
+              key={plan.title}
+              index={index}
+              className={`card-surface flex flex-col gap-6 p-8 ${index === 0 ? "card-featured" : ""}`}
+            >
               <div className="flex flex-col gap-2">
-                <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">{plan.caption}</p>
+                <p className="eyebrow">{plan.caption}</p>
                 <h3 className="text-3xl text-foreground">{plan.title}</h3>
               </div>
               <ul className="flex flex-col gap-3">

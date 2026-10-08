@@ -7,7 +7,7 @@ export function SiteFooter() {
   const ownerName = legal.businessName || brand.name
 
   return (
-    <footer className="border-t border-border/40 bg-background/40">
+    <footer className="border-t border-border bg-muted">
       <div className="container max-w-7xl mx-auto flex flex-col gap-10 px-4 py-12 md:px-6 md:py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="flex flex-col gap-4">
@@ -49,7 +49,7 @@ export function SiteFooter() {
           )}
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-8 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-xs text-muted-foreground">
             &copy; {year} {ownerName}. All rights reserved.
           </p>

@@ -234,7 +234,7 @@ export function LeadForm() {
       className="card-surface flex flex-col gap-6 p-6 md:p-8"
     >
       {!IS_CONFIGURED && (
-        <p id="lead-form-unavailable" role="alert" className="rounded-md border border-border bg-background/60 p-4 text-sm leading-relaxed">
+        <p id="lead-form-unavailable" role="alert" className="rounded-md border border-border bg-muted p-4 text-sm leading-relaxed text-foreground">
           This form is not set up yet.
           <PhoneFallback prefix=" Please call " />
         </p>
@@ -269,7 +269,7 @@ export function LeadForm() {
               name="hasSite"
               value={values.hasSite}
               onChange={(event) => update("hasSite", event.target.value)}
-              className="h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 text-base text-foreground shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 md:text-sm"
+              className="h-11 w-full min-w-0 rounded-md border border-input bg-background px-3 text-base text-foreground shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/30 md:text-sm"
             >
               <option value="">Choose one</option>
               <option value="Yes">Yes</option>
@@ -320,7 +320,7 @@ export function LeadForm() {
 
       <div aria-live="polite" className="empty:hidden">
         {status === "error" && (
-          <p role="alert" className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm leading-relaxed">
+          <p role="alert" className="rounded-md border border-destructive/40 bg-destructive/5 p-4 text-sm leading-relaxed text-foreground">
             Something went wrong. Please try again, or call us
             {hasPhone ? (
               <>
@@ -380,7 +380,7 @@ function TextField({ label, name, type = "text", required, autoComplete, inputMo
         onBlur={() => onBlur(name)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={cn("h-10")}
+        className={cn("h-11 bg-background focus-visible:ring-ring/30")}
       />
       {error && (
         <p id={`${id}-error`} className="text-xs text-destructive">

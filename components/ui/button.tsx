@@ -10,20 +10,19 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border-2 border-primary text-primary bg-transparent hover:bg-primary/10 hover:shadow-[0_0_24px_var(--brand-glow)] active:scale-[0.98] transition-all duration-200",
+          "border border-border bg-background text-foreground shadow-xs hover:border-brand-line hover:bg-brand-tint active:scale-[0.98]",
         solid:
-          "border-2 border-primary bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-[0_0_24px_var(--brand-glow)] active:scale-[0.98] transition-all duration-200",
-        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground active:scale-[0.98]",
-        "outline-white":
-          "border-2 border-white/20 text-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 active:scale-[0.98]",
+          "border border-primary bg-primary text-primary-foreground font-semibold shadow-xs hover:bg-primary/90 active:scale-[0.98]",
+        outline:
+          "border border-border bg-background text-foreground shadow-xs hover:border-brand-line hover:bg-brand-tint active:scale-[0.98]",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:scale-[0.98]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        default: "h-10 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-9 rounded-md gap-1.5 px-4 has-[>svg]:px-3",
+        lg: "h-12 rounded-md px-6 text-base has-[>svg]:px-5",
         icon: "size-9",
         "icon-sm": "size-8",
         "icon-lg": "size-10",

@@ -147,7 +147,7 @@ export function LegalSections() {
   }, [])
 
   return (
-    <div className="w-full border-t border-border/40 px-4 py-12 md:px-6">
+    <div className="w-full border-t border-border px-4 py-12 md:px-6">
       <div className="container max-w-3xl mx-auto flex flex-col gap-4">
         {PANEL_IDS.map((id) => {
           const { title, content: Content } = PANELS[id]
@@ -156,10 +156,10 @@ export function LegalSections() {
               <Collapsible
                 open={open[id]}
                 onOpenChange={(isOpen) => setOpen((current) => ({ ...current, [id]: isOpen }))}
-                className="rounded-2xl border border-border bg-[var(--surface)]"
+                className="rounded-card border border-border bg-card shadow-xs"
               >
                 <h2 id={`${id}-heading`} className="text-lg">
-                  <CollapsibleTrigger className="group flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left font-semibold text-foreground outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring">
+                  <CollapsibleTrigger className="group flex w-full items-center justify-between gap-4 rounded-card px-6 py-5 text-left font-semibold text-foreground outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-primary">
                     {title}
                     <ChevronDown className="h-5 w-5 shrink-0 transition-transform group-data-[state=open]:rotate-180" aria-hidden="true" />
                   </CollapsibleTrigger>
