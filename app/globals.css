@@ -3,100 +3,64 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+  Theme tokens. The raw values (--brand, --brand-foreground, --bg, --surface, --text, --text-muted,
+  --line, --radius) are overridden at runtime from config/partner.config.json (theme.*) via an inline
+  style on <html>. The defaults below mirror that file so the page still renders if the style is missing.
+*/
 :root {
-  /* Brand tokens (source of truth) */
-  --bg: #000000;
-  --surface: #090c0c;
-  --surface-2: #131516;
-  --surface-tint: #00080b;
-  --border-hover: #179ec7;
-  --hero-card-border: #0d303a;
-  --cyan: #179ec7;
-  --magenta: #ba00e2;
-  --text: #f5f5f7;
-  --text-muted: #a1a8b3;
-  --gradient-brand: linear-gradient(90deg, #179ec7 0%, #7580d1 50%, #ba00e2 100%);
+  --brand: #1f7a3e;
+  --brand-foreground: #ffffff;
+  --bg: #ffffff;
+  --surface: #f3f8f4;
+  --text: #0f1a14;
+  --text-muted: #4f5a53;
+  --line: #d6e4da;
+  --radius: 12px;
 
-  /* Default to dark theme values as requested */
+  /* Derived from the theme so every shade follows theme.* */
+  --brand-tint: color-mix(in srgb, var(--brand) 7%, var(--bg));
+  --brand-soft: color-mix(in srgb, var(--brand) 10%, var(--bg));
+  --brand-line: color-mix(in srgb, var(--brand) 35%, var(--bg));
+  --radius-card-size: calc(var(--radius) + 8px);
+  --shadow-subtle: 0 1px 2px color-mix(in srgb, var(--text) 6%, transparent);
+  --shadow-raised: 0 6px 20px -8px color-mix(in srgb, var(--text) 18%, transparent);
+
   --background: var(--bg);
   --foreground: var(--text);
-
-  --card: var(--surface);
-  --card-foreground: var(--text);
-
-  --popover: var(--bg);
-  --popover-foreground: var(--text);
-
-  --primary: var(--cyan);
-  --primary-foreground: #ffffff;
-
-  --secondary: var(--magenta);
-  --secondary-foreground: #ffffff;
-
-  --muted: var(--surface-2);
-  --muted-foreground: var(--text-muted);
-
-  --accent: var(--surface-2);
-  --accent-foreground: var(--text);
-
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-
-  --border: #14181f;
-  --input: #14181f;
-  --ring: var(--cyan);
-
-  --radius: 0.75rem;
-
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #f5f7fa;
-  --sidebar-primary: #06a0c7;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #f5f7fa;
-  --sidebar-border: #1f2937;
-  --sidebar-ring: #06a0c7;
-}
-
-.dark {
-  --background: var(--bg);
-  --foreground: var(--text);
-  --card: var(--surface);
+  --card: var(--bg);
   --card-foreground: var(--text);
   --popover: var(--bg);
   --popover-foreground: var(--text);
-  --primary: var(--cyan);
-  --primary-foreground: #ffffff;
-  --secondary: var(--magenta);
-  --secondary-foreground: #ffffff;
-  --muted: var(--surface-2);
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: var(--surface);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface);
   --muted-foreground: var(--text-muted);
-  --accent: var(--surface-2);
+  --accent: var(--surface);
   --accent-foreground: var(--text);
-  --destructive: #ef4444;
+  /* Status color for errors; not a brand color, chosen to pass AA on white and on the tint. */
+  --destructive: #b42318;
   --destructive-foreground: #ffffff;
-  --border: #14181f;
-  --input: #14181f;
-  --ring: var(--cyan);
+  --border: var(--line);
+  /* Form-field outlines are darker than card borders so inputs meet the 3:1 non-text contrast rule. */
+  --input: color-mix(in srgb, var(--text-muted) 75%, var(--bg));
+  --ring: var(--brand);
+
   --sidebar: var(--surface);
   --sidebar-foreground: var(--text);
-  --sidebar-primary: var(--cyan);
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: var(--surface-2);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--brand-foreground);
+  --sidebar-accent: var(--surface);
   --sidebar-accent-foreground: var(--text);
-  --sidebar-border: #14181f;
-  --sidebar-ring: var(--cyan);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--brand);
 }
 
 @theme inline {
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-body-family);
+  --font-display: var(--font-heading-family);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -116,15 +80,14 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-line: var(--brand-line);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-card: var(--radius-card-size);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -140,22 +103,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    position: relative;
-    isolation: isolate;
-  }
-  /* Site-wide ambient brand glow so pages never drop to flat black; fixed so it follows the viewport */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at 80% 8%, rgba(23, 158, 199, 0.12), transparent 38%),
-      radial-gradient(circle at 12% 55%, rgba(186, 0, 226, 0.08), transparent 34%),
-      radial-gradient(circle at 70% 95%, rgba(23, 158, 199, 0.07), transparent 36%),
-      linear-gradient(180deg, rgba(23, 158, 199, 0.03), rgba(186, 0, 226, 0.03));
+    @apply bg-background text-foreground font-sans;
   }
   h1,
   h2,
@@ -163,219 +111,97 @@
   h4,
   h5,
   h6 {
-    @apply font-display font-bold tracking-tight;
+    @apply font-display font-bold tracking-tight text-foreground;
   }
-}
-
-/* Added custom utility classes for bordered headings */
-@layer utilities {
-  /* Removed the circling/boxing styles as requested */
-  .heading-bordered {
-    @apply inline-block;
+  a:not([data-slot="button"]):focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
-
-  .subheading-bordered {
-    @apply inline-block;
+  [id] {
+    scroll-margin-top: 5rem;
   }
 }
 
 @layer components {
-  /* Hover effects for buttons and icons */
   button:not(:disabled),
-  a[role="button"],
-  [class*="lucide"]:hover {
-    @apply transition-all duration-200;
+  a[role="button"] {
+    @apply transition-colors duration-200;
   }
 
-  button:not(:disabled):hover,
-  a[role="button"]:hover {
-    @apply scale-105 brightness-110;
-  }
-
-  svg:hover {
-    @apply transition-all duration-200 scale-110 brightness-125;
-  }
-
-  /* Arrow icons inside buttons/links nudge forward on hover, matching the hero CTAs */
+  /* Arrow icons inside buttons/links nudge forward on hover */
   svg.lucide-arrow-right {
     transition: transform 200ms ease-out;
   }
   button:hover svg.lucide-arrow-right,
   a:hover svg.lucide-arrow-right,
   [role="button"]:hover svg.lucide-arrow-right {
-    transform: translateX(4px);
+    transform: translateX(3px);
   }
 
-  /* Shared card surface for feature/step/FAQ/pricing/portfolio/calculator cards */
+  /* Shared flat card: white, thin border, minimal shadow. */
   .card-surface {
-    background-color: var(--surface);
+    background-color: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius-card-size);
+    box-shadow: var(--shadow-subtle);
     position: relative;
     overflow: hidden;
     transition:
-      border-color 300ms ease-out,
-      box-shadow 300ms ease-out,
-      transform 300ms ease-out;
+      border-color 200ms ease-out,
+      box-shadow 200ms ease-out;
   }
-  .card-surface::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(23, 158, 199, 0.08), transparent);
-    opacity: 0;
-    transition: opacity 300ms ease-out;
-    pointer-events: none;
-  }
-  .card-surface:hover,
-  .card-surface:focus-within {
-    border-color: var(--border-hover);
-    box-shadow: 0 0 32px rgba(23, 158, 199, 0.18);
-    transform: translateY(-4px);
-  }
-  .card-surface:hover::before,
-  .card-surface:focus-within::before {
-    opacity: 1;
+  .card-surface:is(li, article):hover,
+  .card-surface:is(li, article):focus-within {
+    border-color: var(--brand-line);
+    box-shadow: var(--shadow-raised);
   }
 
-  /* Icon tile used inside cards; scales up when its card is hovered */
+  /* Featured card, echoing the tinted first pricing card on the brand site. */
+  .card-featured {
+    background-color: var(--brand-tint);
+    border-color: var(--brand-line);
+  }
+
   .icon-tile {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
-    border-radius: 12px;
-    background-color: rgba(23, 158, 199, 0.1);
-    color: var(--cyan);
-    transition: transform 300ms ease-out;
-  }
-  .card-surface:hover .icon-tile,
-  .group:hover .icon-tile {
-    transform: scale(1.1);
+    border-radius: var(--radius);
+    background-color: var(--brand-soft);
+    color: var(--brand);
   }
 
-  /* Alternating section background tint, layered with soft brand glows */
+  /* Small uppercase label above titles, in the brand color. */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
   .section-tint {
-    background-color: var(--surface-tint);
-  }
-  .section-glow {
-    position: relative;
-    isolation: isolate;
-  }
-  .section-glow::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(600px circle at 85% 0%, rgba(23, 158, 199, 0.1), transparent 70%),
-      radial-gradient(500px circle at 10% 100%, rgba(186, 0, 226, 0.08), transparent 70%);
-    filter: blur(48px);
-  }
-
-  /* Added scroll animation utilities */
-  .animate-on-scroll {
-    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
-  }
-
-  .animate-on-scroll.visible {
-    @apply opacity-100 translate-y-0;
-  }
-
-  .animate-slide-in-left {
-    @apply opacity-0 -translate-x-12 transition-all duration-700 ease-out;
-  }
-
-  .animate-slide-in-left.visible {
-    @apply opacity-100 translate-x-0;
-  }
-
-  .animate-slide-in-right {
-    @apply opacity-0 translate-x-12 transition-all duration-700 ease-out;
-  }
-
-  .animate-slide-in-right.visible {
-    @apply opacity-100 translate-x-0;
-  }
-
-  .animate-fade-in {
-    @apply opacity-0 transition-opacity duration-1000 ease-out;
-  }
-
-  .animate-fade-in.visible {
-    @apply opacity-100;
-  }
-
-  .animate-scale-in {
-    @apply opacity-0 scale-95 transition-all duration-700 ease-out;
-  }
-
-  .animate-scale-in.visible {
-    @apply opacity-100 scale-100;
-  }
-
-  /* Added new animation for FAQ banner that slides right to left with slowdown in middle */
-  @keyframes slide-across-screen {
-    0% {
-      transform: translateX(150%);
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    40% {
-      transform: translateX(0);
-      animation-timing-function: ease-out;
-    }
-    60% {
-      transform: translateX(0);
-      animation-timing-function: ease-in;
-    }
-    100% {
-      transform: translateX(-150%);
-      opacity: 0;
-    }
-  }
-
-  .animate-slide-across-screen {
-    animation: slide-across-screen 15s ease-in-out forwards;
-  }
-
-  /* Added keyframe animation for FAQ banner sliding from right to left */
-  /* Keep the original slide-in-right for other uses */
-  @keyframes slide-in-right-to-left {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  .animate-slide-in-right {
-    animation: slide-in-right-to-left 0.6s ease-out forwards;
+    background-color: var(--surface);
   }
 
   /* Scroll-triggered reveal used by the <Reveal> component. Only transform/opacity animate. */
   .reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(16px);
   }
   .reveal.reveal-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  /* Hero load-in animation, driven by the existing animate-fade-in-up + delay-* classes
-     already present in the hero markup. */
   @keyframes fade-in-up {
     from {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(16px);
     }
     to {
       opacity: 1;
@@ -383,7 +209,7 @@
     }
   }
 
-  /* Header nav-link underline: scales from 0 to full width, origin left */
+  /* Header link underline: scales from 0 to full width, origin left */
   .nav-link {
     position: relative;
   }
@@ -394,10 +220,10 @@
     bottom: -4px;
     height: 2px;
     width: 100%;
-    background-color: var(--cyan);
+    background-color: var(--brand);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 300ms ease-out;
+    transition: transform 250ms ease-out;
   }
   .nav-link:hover::after,
   .nav-link:focus-visible::after {
@@ -406,10 +232,10 @@
 
   /* Scroll-to-top button */
   .scroll-top-button {
+    box-shadow: var(--shadow-raised);
     transition:
       opacity 250ms ease-out,
       transform 250ms ease-out,
-      box-shadow 250ms ease-out,
       border-color 200ms ease-out;
   }
   .scroll-top-button--hidden {
@@ -420,55 +246,12 @@
     opacity: 1;
     transform: scale(1);
   }
-  .scroll-top-button:hover {
-    box-shadow: 0 0 24px rgba(23, 158, 199, 0.4);
-  }
-
-  /* Partner form popup */
-  .popup-overlay {
-    animation: popup-overlay-in 250ms ease-out forwards;
-  }
-  .popup-panel {
-    animation: popup-panel-in 250ms ease-out forwards;
-  }
-  @keyframes popup-overlay-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @keyframes popup-panel-in {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  /* Calculator range-slider thumb: scale on hover */
-  input[type="range"]::-webkit-slider-thumb {
-    transition: transform 200ms ease-out;
-  }
-  input[type="range"]:hover::-webkit-slider-thumb {
-    transform: scale(1.2);
-  }
-  input[type="range"]::-moz-range-thumb {
-    transition: transform 200ms ease-out;
-  }
-  input[type="range"]:hover::-moz-range-thumb {
-    transform: scale(1.2);
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .animate-fade-in-up {
     opacity: 0;
-    animation: fade-in-up 600ms ease-out forwards;
+    animation: fade-in-up 500ms ease-out forwards;
   }
   .delay-100 {
     animation-delay: 100ms;
@@ -482,28 +265,9 @@
 
   .reveal {
     transition:
-      opacity 600ms ease-out,
-      transform 600ms ease-out;
+      opacity 500ms ease-out,
+      transform 500ms ease-out;
   }
-}
-
-/* Brand color belongs on standalone page and section headings, not card titles. */
-main h1 {
-  background: linear-gradient(100deg, var(--cyan) 5%, var(--magenta) 95%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-main section h2:is(.text-2xl, .text-3xl, .text-4xl, .text-5xl) {
-  color: var(--cyan);
-}
-
-main section:nth-of-type(3n) h2:is(.text-3xl, .text-4xl, .text-5xl) {
-  background: linear-gradient(100deg, var(--cyan), var(--magenta));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -517,8 +281,11 @@ main section:nth-of-type(3n) h2:is(.text-3xl, .text-4xl, .text-5xl) {
   .scroll-top-button--hidden {
     opacity: 0 !important;
   }
-  .popup-overlay,
-  .popup-panel {
-    animation: none !important;
+}
+
+/* Keeps keyboard-focused form fields above the mobile sticky bar. */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-bottom: 6rem;
   }
 }

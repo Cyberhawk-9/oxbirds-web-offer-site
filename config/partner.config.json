@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.1",
+  "brand": {
+    "name": "oxbird",
+    "logo": "/partner/logo.png",
+    "logoAlt": "oxbird",
+    "favicon": "/partner/favicon.ico",
+    "ogImage": "/partner/og-image.png",
+    "websiteUrl": "https://oxbird.com",
+    "siteUrl": "https://websites.oxbird.com"
+  },
+  "theme": {
+    "mode": "light",
+    "primary": "#1F7A3E",
+    "primaryText": "#ffffff",
+    "background": "#ffffff",
+    "surface": "#F3F8F4",
+    "text": "#0F1A14",
+    "muted": "#4F5A53",
+    "border": "#D6E4DA",
+    "radius": 12,
+    "fonts": {
+      "heading": "Plus Jakarta Sans",
+      "body": "Inter"
+    }
+  },
+  "contact": {
+    "phoneDisplay": "REPLACE",
+    "phoneLink": "REPLACE",
+    "email": "REPLACE",
+    "hours": "REPLACE",
+    "responseTime": "one business day"
+  },
+  "legal": {
+    "businessName": "Oxbird LLC",
+    "address": "REPLACE",
+    "privacyEmail": "REPLACE"
+  },
+  "offer": {
+    "setupPrice": 249,
+    "monthlyPrice": 59,
+    "headline": "A professional website for your business, built for you.",
+    "subhead": "Get a custom website that looks sharp on every phone, with hosting and updates included. No long contract.",
+    "ctaLabel": "Request a call",
+    "priceNote": "No long-term contract. Cancel any month."
+  },
+  "promises": {
+    "firstVersion": "usually about a week after we have your information and payment",
+    "edits": "usually done in 2 to 3 business days",
+    "cancellation": "Cancel any month. Your site stays online until the end of that month."
+  },
+  "samples": [],
+  "leadForm": {
+    "consentText": "By submitting, you agree that {partnerName} may contact you by phone, text, or email about this offer. Message and data rates may apply. You can opt out at any time.",
+    "successTitle": "Thanks, we've got your request.",
+    "successBody": "{partnerName} will contact you within {responseTime}."
+  },
+  "tracking": {
+    "ga4MeasurementId": "",
+    "googleAds": { "conversionId": "", "conversionLabel": "" },
+    "metaPixelId": ""
+  },
+  "indexing": false
+}
