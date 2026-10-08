@@ -5,21 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-[#179ec7] focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
   {
     variants: {
       variant: {
         default:
-          "border-2 border-[#179ec7] text-[#179ec7] bg-transparent hover:bg-[rgba(23,158,199,0.12)] hover:shadow-[0_0_24px_rgba(23,158,199,0.35)] active:scale-[0.98] transition-all duration-200",
-        pink: "border-2 border-[#ba00e2] text-[#ba00e2] bg-transparent hover:bg-[rgba(186,0,226,0.12)] hover:shadow-[0_0_24px_rgba(186,0,226,0.35)] active:scale-[0.98] transition-all duration-200",
-        "solid-blue": "bg-[#179ec7] text-white hover:bg-[#1489ab] shadow-sm border-0 active:scale-[0.98]",
-        "solid-pink": "bg-[#ba00e2] text-white hover:bg-[#9d00c0] shadow-sm border-0 active:scale-[0.98]",
+          "border-2 border-primary text-primary bg-transparent hover:bg-primary/10 hover:shadow-[0_0_24px_var(--brand-glow)] active:scale-[0.98] transition-all duration-200",
+        solid:
+          "border-2 border-primary bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-[0_0_24px_var(--brand-glow)] active:scale-[0.98] transition-all duration-200",
         outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground active:scale-[0.98]",
         "outline-white":
           "border-2 border-white/20 text-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 active:scale-[0.98]",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:scale-[0.98]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-[#179ec7] underline-offset-4 hover:underline",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

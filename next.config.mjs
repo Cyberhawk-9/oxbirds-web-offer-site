@@ -5,47 +5,17 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "notfair.co",
-        pathname: "/api/seo/**",
-      },
-    ],
   },
   trailingSlash: true,
   async headers() {
-    if (process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true") return []
-    return [
-      {
-        source: "/:path*",
-        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
-      },
+    const securityHeaders = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
     ]
-  },
-  async redirects() {
-    return [
-      {
-        source: "/for-insurance-agencies",
-        destination: "/who-its-for",
-        permanent: true,
-      },
-      {
-        source: "/for-insurance-agencies/",
-        destination: "/who-its-for",
-        permanent: true,
-      },
-      {
-        source: "/partner-agreement",
-        destination: "/partner-service-agreement",
-        permanent: true,
-      },
-      {
-        source: "/partner-agreement/",
-        destination: "/partner-service-agreement",
-        permanent: true,
-      },
-    ]
+    if (process.env.NEXT_PUBLIC_ALLOW_INDEXING !== "true") {
+      securityHeaders.push({ key: "X-Robots-Tag", value: "noindex, nofollow" })
+    }
+    return [{ source: "/:path*", headers: securityHeaders }]
   },
 }
 

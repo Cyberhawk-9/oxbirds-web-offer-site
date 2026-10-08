@@ -1,97 +1,66 @@
-import Link from "next/link"
 import Image from "next/image"
-import { BRAND } from "@/lib/brand"
-
-const footerLinks = {
-  offer: [
-    { name: "How It Works", href: "/how-it-works" },
-    { name: "The Intake Form", href: "/intake" },
-    { name: "Ways to Work", href: "/ways-to-work" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Who It's For", href: "/who-its-for" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Services", href: "/services" },
-    { name: "About", href: "/about" },
-  ],
-  policies: [
-    { name: "Billing & Payments", href: "/billing" },
-    { name: "Support & Edits", href: "/support" },
-    { name: "Cancellation & Ownership", href: "/cancellation" },
-    { name: "Partner Service Agreement", href: "/partner-service-agreement" },
-    { name: "Terms", href: "/terms" },
-    { name: "Privacy", href: "/privacy" },
-  ],
-  contact: [{ name: "Become a Partner", href: "/contact" }],
-}
+import { hasPhone, partner, phoneHref } from "@/lib/partner"
 
 export function SiteFooter() {
+  const { brand, contact, legal } = partner
+  const year = new Date().getFullYear()
+  const ownerName = legal.businessName || brand.name
+
   return (
     <footer className="border-t border-border/40 bg-background/40">
-      <div className="container max-w-7xl mx-auto px-4 py-12 md:px-6 md:py-16 lg:py-20">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="inline-flex items-center">
+      <div className="container max-w-7xl mx-auto flex flex-col gap-10 px-4 py-12 md:px-6 md:py-16">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          <div className="flex flex-col gap-4">
+            <a href="#top" className="inline-flex items-center">
               <Image
-                src="/ghostwright-lockup-dark.png"
-                alt="Ghostwright Web Development"
-                width={220}
-                height={64}
-                className="h-auto w-[220px]"
+                src={brand.logo || "/placeholder.svg"}
+                alt={brand.logoAlt || brand.name}
+                width={160}
+                height={40}
+                className="h-10 w-auto"
               />
-            </Link>
-            <p className="mt-4 text-sm text-muted-foreground">{BRAND.tagline}</p>
-            <p className="mt-3 text-sm text-muted-foreground">
-              <a href="https://ghostwrightweb.com" rel="noopener" className="underline underline-offset-4 hover:text-primary transition-colors">
-                Does your company insure contractors? See ghostwrightweb.com.
-              </a>
-            </p>
+            </a>
+            <p className="font-display text-lg font-semibold text-foreground">{brand.name}</p>
           </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold text-foreground">Offer</h3>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              {footerLinks.offer.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="hover:text-primary transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold text-foreground">Policies</h3>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              {footerLinks.policies.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="hover:text-primary transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-4 text-sm font-semibold text-foreground">Contact</h3>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              {footerLinks.contact.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="hover:text-primary transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <a href={`mailto:${BRAND.contactEmail}`} className="hover:text-primary transition-colors">
-                  {BRAND.contactEmail}
+
+          {(hasPhone || contact.email || contact.hours) && (
+            <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+              <h2 className="text-sm font-semibold text-foreground">Contact</h2>
+              {hasPhone && (
+                <a href={phoneHref} className="hover:text-primary transition-colors">
+                  {contact.phoneDisplay}
                 </a>
-              </li>
-            </ul>
-          </div>
+              )}
+              {contact.email && (
+                <a href={`mailto:${contact.email}`} className="hover:text-primary transition-colors">
+                  {contact.email}
+                </a>
+              )}
+              {contact.hours && <p>{contact.hours}</p>}
+            </div>
+          )}
+
+          {(legal.businessName || legal.address) && (
+            <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+              <h2 className="text-sm font-semibold text-foreground">Business</h2>
+              {legal.businessName && <p>{legal.businessName}</p>}
+              {legal.address && <address className="not-italic">{legal.address}</address>}
+            </div>
+          )}
         </div>
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-8 md:flex-row">
+
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-8 md:flex-row">
           <p className="text-xs text-muted-foreground">
-            &copy; {BRAND.year} {BRAND.name}. All rights reserved.
+            &copy; {year} {ownerName}. All rights reserved.
           </p>
+          <nav aria-label="Legal" className="flex items-center gap-6 text-xs text-muted-foreground">
+            <a href="#privacy" className="hover:text-primary transition-colors">
+              Privacy
+            </a>
+            <a href="#terms" className="hover:text-primary transition-colors">
+              Terms
+            </a>
+          </nav>
         </div>
       </div>
     </footer>

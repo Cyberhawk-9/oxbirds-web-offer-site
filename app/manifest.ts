@@ -1,16 +1,15 @@
 import type { MetadataRoute } from "next"
-import { BRAND } from "@/lib/brand"
+import { partner } from "@/lib/partner"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: BRAND.name,
-    short_name: BRAND.short,
+    name: partner.brand.name,
+    short_name: partner.brand.name,
+    description: partner.offer.subhead,
+    start_url: "/",
     display: "standalone",
-    background_color: "#000000",
-    theme_color: "#000000",
-    icons: [
-      { src: "/icon-192.png?v=2", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/icon-512.png?v=2", sizes: "512x512", type: "image/png", purpose: "any" },
-    ],
+    background_color: partner.theme.background,
+    theme_color: partner.theme.background,
+    icons: [{ src: partner.brand.favicon, sizes: "16x16 32x32 48x48", type: "image/x-icon" }],
   }
 }
