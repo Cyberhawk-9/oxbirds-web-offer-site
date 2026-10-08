@@ -11,7 +11,7 @@ const features = [
     body: "Each of your main services or products gets its own page.",
   },
   { icon: Smartphone, title: "Looks great on phones", body: "Easy to read and use on any screen." },
-  { icon: ShieldCheck, title: "Hosting and security included", body: "We keep your site online and protected." },
+  { icon: ShieldCheck, title: "Hosting and security included", body: "We host your site and secure it with SSL." },
   {
     icon: PenLine,
     title: "Updates when you need them",

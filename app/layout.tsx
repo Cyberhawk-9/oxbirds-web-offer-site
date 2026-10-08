@@ -7,18 +7,12 @@ import { MobileCtaBar } from "@/components/mobile-cta-bar"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { TrackingScripts } from "@/components/tracking-scripts"
 import { AttributionCapture } from "@/components/attribution-capture"
-import { brandName, brandNameStart, partner, themeCssVariables } from "@/lib/partner"
+import { brandName, partner, themeCssVariables } from "@/lib/partner"
 import { fontCssVariables, fontVariableClasses } from "@/lib/fonts"
 import { ROBOTS_METADATA } from "@/lib/indexing"
 
 const title = `${partner.offer.headline} | ${brandName}`
 const description = partner.offer.subhead
-const ogImage = {
-  url: partner.brand.ogImage,
-  width: 1200,
-  height: 630,
-  alt: `${brandNameStart}: ${partner.offer.headline}`,
-}
 
 export const metadata: Metadata = {
   metadataBase: new URL(partner.brand.siteUrl),
@@ -34,13 +28,11 @@ export const metadata: Metadata = {
     url: "/",
     title,
     description,
-    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [partner.brand.ogImage],
   },
 }
 

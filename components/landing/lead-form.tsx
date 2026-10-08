@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { readAttribution } from "@/lib/attribution"
 import { trackLeadConversion } from "@/lib/conversion"
-import { fillTemplate, hasPhone, partner, phoneHref } from "@/lib/partner"
+import { fillTemplate, partner } from "@/lib/partner"
 import { cn } from "@/lib/utils"
 
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? ""
@@ -96,18 +96,6 @@ function submittedAt(): string {
 }
 
 const dash = (value: string) => value.trim() || "-"
-
-function PhoneFallback({ prefix }: { prefix: string }) {
-  if (!hasPhone) return null
-  return (
-    <>
-      {prefix}
-      <a href={phoneHref} className="font-semibold text-primary underline-offset-4 hover:underline">
-        {partner.contact.phoneDisplay}
-      </a>
-    </>
-  )
-}
 
 export function LeadForm() {
   const [values, setValues] = useState<Values>(INITIAL_VALUES)
@@ -213,11 +201,6 @@ export function LeadForm() {
         </span>
         <h3 className="text-2xl text-balance">{fillTemplate(partner.leadForm.successTitle)}</h3>
         <p className="leading-relaxed text-muted-foreground text-pretty">{fillTemplate(partner.leadForm.successBody)}</p>
-        {hasPhone && (
-          <p className="text-muted-foreground">
-            <PhoneFallback prefix="Need us sooner? Call " />
-          </p>
-        )}
       </div>
     )
   }
@@ -236,7 +219,6 @@ export function LeadForm() {
       {!IS_CONFIGURED && (
         <p id="lead-form-unavailable" role="alert" className="rounded-md border border-border bg-muted p-4 text-sm leading-relaxed text-foreground">
           This form is not set up yet.
-          <PhoneFallback prefix=" Please call " />
         </p>
       )}
 
@@ -304,9 +286,8 @@ export function LeadForm() {
           </div>
         </div>
 
-        <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-          <label htmlFor="company_website">Leave this field empty</label>
-          <input id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+        <div aria-hidden="true" className="pointer-events-none absolute -left-[9999px] top-auto h-px w-px overflow-hidden opacity-0">
+          <input name="company_website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
         </div>
 
         <div className="flex flex-col gap-3">
@@ -321,14 +302,7 @@ export function LeadForm() {
       <div aria-live="polite" className="empty:hidden">
         {status === "error" && (
           <p role="alert" className="rounded-md border border-destructive/40 bg-destructive/5 p-4 text-sm leading-relaxed text-foreground">
-            Something went wrong. Please try again, or call us
-            {hasPhone ? (
-              <>
-                {" at "}
-                <PhoneFallback prefix="" />
-              </>
-            ) : null}
-            .
+            Something went wrong. Please try again.
           </p>
         )}
         {cooldownMessage && <p className="text-sm text-muted-foreground">{cooldownMessage}</p>}

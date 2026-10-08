@@ -14,7 +14,6 @@ export interface PartnerConfig {
     logo: string
     logoAlt: string
     favicon: string
-    ogImage: string
     websiteUrl: string
     siteUrl: string
   }
@@ -35,8 +34,6 @@ export interface PartnerConfig {
     }
   }
   contact: {
-    phoneDisplay: string
-    phoneLink: string
     email: string
     hours: string
     responseTime: string
@@ -99,14 +96,6 @@ export function formatPrice(amount: number): string {
 
 export const setupPrice = formatPrice(partner.offer.setupPrice)
 export const monthlyPrice = formatPrice(partner.offer.monthlyPrice)
-
-export const phoneHref = partner.contact.phoneLink
-  ? partner.contact.phoneLink.startsWith("tel:")
-    ? partner.contact.phoneLink
-    : `tel:${partner.contact.phoneLink}`
-  : ""
-
-export const hasPhone = Boolean(partner.contact.phoneDisplay && phoneHref)
 
 /** The brand name as written mid-sentence (exactly as configured, e.g. "oxbird"). */
 export const brandName = partner.brand.name

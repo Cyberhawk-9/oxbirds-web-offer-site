@@ -1,7 +1,6 @@
 import Image from "next/image"
-import { Phone } from "lucide-react"
 import { CtaButton } from "@/components/cta-button"
-import { hasPhone, partner, phoneHref } from "@/lib/partner"
+import { partner } from "@/lib/partner"
 
 export function SiteHeader() {
   return (
@@ -18,18 +17,7 @@ export function SiteHeader() {
           />
         </a>
 
-        <div className="flex items-center gap-5">
-          {hasPhone && (
-            <a
-              href={phoneHref}
-              className="nav-link hidden items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
-            >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              {partner.contact.phoneDisplay}
-            </a>
-          )}
-          <CtaButton size="sm" className="hidden md:inline-flex" />
-        </div>
+        <CtaButton size="sm" />
       </div>
     </header>
   )
