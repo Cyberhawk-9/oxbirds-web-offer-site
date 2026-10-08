@@ -24,14 +24,11 @@
     }
   },
   "contact": {
-    "email": "REPLACE",
-    "hours": "REPLACE",
     "responseTime": "one business day"
   },
   "legal": {
     "businessName": "Oxbird LLC",
-    "address": "136 Grove Ave, Prescott, AZ 86301",
-    "privacyEmail": "REPLACE"
+    "address": "136 Grove Ave, Prescott, AZ 86301"
   },
   "offer": {
     "setupPrice": 249,

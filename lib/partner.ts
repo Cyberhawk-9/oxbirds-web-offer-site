@@ -34,14 +34,11 @@ export interface PartnerConfig {
     }
   }
   contact: {
-    email: string
-    hours: string
     responseTime: string
   }
   legal: {
     businessName: string
     address: string
-    privacyEmail: string
   }
   offer: {
     setupPrice: number

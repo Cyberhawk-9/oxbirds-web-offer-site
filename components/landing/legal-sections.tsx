@@ -10,22 +10,18 @@ const LAST_UPDATED = "October 8, 2026"
 type PanelId = "privacy" | "terms"
 const PANEL_IDS: PanelId[] = ["privacy", "terms"]
 
-const { brand, contact, legal, tracking } = partner
+const { brand, legal, tracking } = partner
 const ownerName = legal.businessName || brand.name
-const privacyEmail = legal.privacyEmail || contact.email
 const usesGoogle = Boolean(tracking.ga4MeasurementId || tracking.googleAds.conversionId)
 const usesMeta = Boolean(tracking.metaPixelId)
 const hasTracking = usesGoogle || usesMeta
 
 function ContactLine() {
-  if (privacyEmail) {
-    return (
-      <a href={`mailto:${privacyEmail}`} className="text-primary underline-offset-4 hover:underline">
-        {privacyEmail}
-      </a>
-    )
-  }
-  return <>the request form on this page</>
+  return (
+    <a href="#lead-form" className="text-primary underline-offset-4 hover:underline">
+      the request form on this page
+    </a>
+  )
 }
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
