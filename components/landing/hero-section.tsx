@@ -24,7 +24,7 @@ export function HeroSection() {
   return (
     <section id="top" className="hero-aurora w-full px-4 pt-16 pb-20 md:px-6 md:pt-28 md:pb-32">
       <div className="container max-w-4xl mx-auto flex flex-col items-center gap-8 text-center">
-        <h1 className="animate-fade-in-up pb-1 text-4xl leading-tight text-balance text-foreground sm:text-5xl md:text-6xl">
+        <h1 className="heading-gradient animate-fade-in-up pb-1 text-4xl leading-tight text-balance sm:text-5xl md:text-6xl">
           <HighlightedHeadline text={hero.headline} />
         </h1>
         <p className="animate-fade-in-up delay-100 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty md:text-xl">
