@@ -268,6 +268,27 @@
     color: transparent;
   }
 
+  /* Major headings: dark green to light, left to right. The stops mirror so the loop has no seam. */
+  .heading-gradient {
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--brand) 80%, var(--glow)) 0%,
+      var(--glow) 25%,
+      var(--text) 50%,
+      var(--glow) 75%,
+      color-mix(in srgb, var(--brand) 80%, var(--glow)) 100%
+    );
+    background-size: 200% 100%;
+    background-repeat: repeat-x;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Room for descenders, which background-clip: text would otherwise cut off. */
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
   /* Pill used for the hero price line and highlights. */
   .pill {
     display: inline-flex;
@@ -481,6 +502,25 @@
 
   .hero-aurora::before {
     animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+
+  .heading-gradient {
+    animation: heading-gradient-flow 8s linear infinite;
+  }
+
+  .heading-gradient.animate-fade-in-up {
+    animation:
+      fade-in-up 500ms ease-out forwards,
+      heading-gradient-flow 8s linear infinite;
+  }
+}
+
+@keyframes heading-gradient-flow {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: 0% 0;
   }
 }
 
