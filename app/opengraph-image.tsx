@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og"
-import { brandName, monthlyPrice, partner, setupPrice } from "@/lib/partner"
+import { content } from "@/lib/content"
+import { brandName, partner } from "@/lib/partner"
 
 export const alt = `${brandName}: ${partner.offer.headline}`
 export const size = { width: 1200, height: 630 }
@@ -35,7 +36,7 @@ export default function OpenGraphImage() {
           {offer.headline}
         </div>
         <div style={{ marginTop: 40, fontSize: 36, color: theme.muted }}>
-          {`${setupPrice} to get started, then ${monthlyPrice} a month`}
+          {content.hero.priceText}
         </div>
       </div>
     ),

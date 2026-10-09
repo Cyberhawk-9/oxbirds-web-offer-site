@@ -1,6 +1,7 @@
 import { SectionHeading } from "@/components/landing/section-heading"
 import { LeadForm } from "@/components/landing/lead-form"
-import { brandNameStart, LEAD_FORM_ID, partner } from "@/lib/partner"
+import { content } from "@/lib/content"
+import { LEAD_FORM_ID, partner } from "@/lib/partner"
 
 export function LeadFormSection() {
   return (
@@ -13,7 +14,7 @@ export function LeadFormSection() {
         <SectionHeading
           id="lead-form-heading"
           title={partner.offer.ctaLabel}
-          description={`Tell us a little about your business. ${brandNameStart} will contact you within ${partner.contact.responseTime}.`}
+          description={content.leadForm.subtitle}
         />
         <LeadForm />
       </div>
